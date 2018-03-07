@@ -1,0 +1,103 @@
+/* General 
+==================== */
+body {
+    font-family: arial;
+    margin: 0;
+}
+.container {
+    padding: 0 40px;
+}
+/* Header 
+==================== */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0; left: 0;
+    width: calc(100% - 80px);
+    height: 75px;
+    background-color: white;
+    box-shadow: 0px -2px 8px -1px black;
+}
+h1 {
+    margin: 0;
+}
+/* Main 
+==================== */
+main {
+    background-color: aliceblue;
+    background-image: linear-gradient(180deg, ghostwhite, aliceblue);
+    height: calc(100vh - 200px);
+    padding: 100px 0;
+}
+/* Notes 
+==================== */
+.notes {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-column-gap: 20px;
+    grid-row-gap: 20px;
+}
+.notes article {
+    border: 1px dotted black;
+    padding: 20px;
+}
+.notes article .controls {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+.notes article p {
+    margin: 0;
+}
+/* Sidebar 
+==================== */
+.sidebar {
+    background: slategrey;
+    box-shadow: 0 1px 6px 0 black;
+    width: 80%;
+    height: 400px;
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    pointer-events: none;
+    transition: all 200ms ease-out;
+}
+.sidebar.show {
+    opacity: 1;
+    pointer-events: initial;
+}
+.sidebar form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    color: white;
+}
+.sidebar .close-btn {
+    position: absolute;
+    top: 20px; right: 40px;
+    cursor: pointer;
+}
+.sidebar label {
+    margin-bottom: 10px;
+}
+.sidebar input,
+.sidebar textarea {
+    margin-bottom: 20px;
+    padding: 5px;
+    background: aliceblue;
+}
+.sidebar textarea {
+    height: 100px
+}
+.sidebar input[type=submit] {
+    width: 250px;
+    margin: 0 auto;
+    padding: 15px 0;
+    border-radius: 20px;
+    font-weight: bold;
+    background-color: aliceblue;
+    cursor: pointer;
+}
