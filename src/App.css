@@ -7,6 +7,7 @@ body {
 .container {
     padding: 0 40px;
 }
+
 /* Header 
 ==================== */
 header {
@@ -17,20 +18,32 @@ header {
     top: 0; left: 0;
     width: calc(100% - 80px);
     height: 75px;
-    background-color: white;
+    background-color: lightyellow;
     box-shadow: 0px -2px 8px -1px black;
+}
+nav a {
+    display: inline-block;
+    margin-left: 1.5em;
+    padding: .5em 1em;
+    text-decoration: none;
+    border: 2px outset #ccc;
+    color: mediumblue;
+    background-color: ghostwhite;
+    background-image: linear-gradient(aliceblue, lemonchiffon);
 }
 h1 {
     margin: 0;
 }
+
 /* Main 
 ==================== */
 main {
     background-color: aliceblue;
-    background-image: linear-gradient(180deg, ghostwhite, aliceblue);
+    background-image: linear-gradient(aliceblue, lemonchiffon);
     height: calc(100vh - 200px);
     padding: 100px 0;
 }
+
 /* Notes 
 ==================== */
 .notes {
@@ -40,6 +53,7 @@ main {
     grid-row-gap: 20px;
 }
 .notes article {
+    box-shadow: 0 0 12px -1px #eee;
     border: 1px dotted black;
     padding: 20px;
 }
@@ -50,7 +64,9 @@ main {
 }
 .notes article p {
     margin: 0;
+    word-break: break-word;
 }
+
 /* Sidebar 
 ==================== */
 .sidebar {
@@ -100,4 +116,50 @@ main {
     font-weight: bold;
     background-color: aliceblue;
     cursor: pointer;
+}
+
+/* Portal
+==================== */
+.modal, .overlay {
+    visibility: hidden;
+    pointer-events: none;
+    opacity: 0;
+    transition: all 200ms ease-out;
+    position: absolute;
+}
+.modal.show,
+.overlay.show {
+    visibility: visible;
+    pointer-events: initial;
+    opacity: 1;
+}
+.modal {
+    width: 50vw;
+    background-color: white;
+    border: 10px solid rgba(255,255,255,0.5);
+    top: 50%; left: 50%;
+    transform: translate(-50%,-50%);
+    border-radius: 5px;
+}
+.modal div:not(.close) {
+    padding: 20px;
+}
+.modal .close {
+    position: absolute;
+    top: 0;
+    left: -25px;
+    background-color: white;
+    padding: 10px;
+    border-radius: 5px;
+}
+.modal label {
+    display: block;
+}
+.modal input {
+    height: 40px;
+    padding: 5px 10px;
+    width: calc(100% - 20px);
+}
+.modal div:last-child {
+    text-align: center;
 }
