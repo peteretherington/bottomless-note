@@ -140,37 +140,43 @@ class App extends React.Component {
         )
       }).reverse()
     }else{
-      return <h2>* Login to add notes *</h2>
+      return (
+        <div className="ctaLogin">
+          <h2>Login to get started :-)</h2>
+        </div>
+      )
     }
   }
 
   render() {
     return (
       <main>
-        <header className="container">
-          <h1>Bottomless Note</h1>
-          <nav>
-            {
-              (()=>{
-                if( this.state.loggedin ){
-                  return(
-                    <div>
-                      <a href="" onClick={this.showSidebar}>Add Note</a>
-                      <a href="" onClick={this.logoutAccount}>Logout</a>
-                    </div>
-                  )
-                }else{
-                  return(
-                    <div>
-                      <a href="" onClick={this.showLogin}>Login</a>
-                      <a href="" onClick={this.showSignUp}>Create Account</a>
-                    </div>
-                  )
-                }
-              })()
-            }
+        <header>
+          <div className="container">
+            <h1>Bottomless Note</h1>
+            <nav>
+              {
+                (()=>{
+                  if( this.state.loggedin ){
+                    return(
+                      <div>
+                        <a href="" onClick={this.showSidebar}>Add Note</a>
+                        <a href="" onClick={this.logoutAccount}>Logout</a>
+                      </div>
+                    )
+                  }else{
+                    return(
+                      <div>
+                        <a href="" onClick={this.showLogin}>Login</a>
+                        <a href="" onClick={this.showSignUp}>Create Account</a>
+                      </div>
+                    )
+                  }
+                })()
+              }
 
-          </nav>
+            </nav>
+          </div>
         </header>
         
         {/* <div className="overlay" ref={ref => this.overlay = ref}></div> */}
@@ -221,17 +227,23 @@ class App extends React.Component {
           {this.renderCards()}
         </section>
 
-        <aside className="sidebar" ref={ref => this.sidebar = ref}>
-          <form className="container" onSubmit={this.addNote} >
+        <aside className="addNote modal" ref={ref => this.sidebar = ref}>
+          <form onSubmit={this.addNote} >
             <h3>Add New Note</h3>
-            <div className="close-btn" onClick={this.showSidebar}>
+            <div className="close" onClick={this.showSidebar}>
               <i className="fa fa-times"></i>
             </div>
+            <div>
             <label htmlFor="note-title">Title:</label>
             <input type="text" name="note-title" ref={ref => this.noteTitle = ref} />
+            </div>
+            <div>
             <label htmlFor="note-text">Text:</label>
             <textarea name="note-text" ref={ref => this.noteText = ref} />
+            </div>
+            <div>
             <input type="submit" value="Add New Note"/>
+            </div>
           </form>
         </aside>
       </main>

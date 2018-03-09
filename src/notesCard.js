@@ -41,7 +41,7 @@ export default class NoteCard extends React.Component {
                     </div>
                     <div>
                         <label htmlFor="Note">Note</label>
-                        <input defaultValue={this.props.note.text} type="text" name="note" ref={ref => this.noteText = ref}/>
+                        <textarea defaultValue={this.props.note.text} name="note" ref={ref => this.noteText = ref}/>
                     </div>
                     <input type="submit" value="Save"/>
                 </form>

@@ -1,124 +1,188 @@
 /* General 
 ==================== */
+* {
+    box-sizing: border-box;
+    font-family: arial;  
+}
 body {
-    font-family: arial;
     margin: 0;
 }
-.container {
-    padding: 0 40px;
+main {
+    background-color: aliceblue;
+    min-height: 100vh;
+    padding: 150px 0 50px;
 }
+.container {
+    padding: 0 20px;
+}
+.show {
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: initial !important;
+}
+/* MQ */
+@media screen and (min-width: 360px) {
+    .container {
+        padding: 0 40px;
+    }
+}
+@media screen and (min-width: 768px) {
+    main {
+        padding: 100px 0 50px;
+    }
+    .container {
+        padding: 0 80px;
+    }
+}
+
+
 
 /* Header 
 ==================== */
 header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    
     position: fixed;
+    z-index: 10;
     top: 0; left: 0;
-    width: calc(100% - 80px);
-    height: 75px;
-    background-color: lightyellow;
+    width: 100%;
+    padding: 20px 0 15px;
+    background-color: rgb(22, 170, 255);
     box-shadow: 0px -2px 8px -1px black;
 }
-nav a {
-    display: inline-block;
-    margin-left: 1.5em;
-    padding: .5em 1em;
-    text-decoration: none;
-    border: 2px outset #ccc;
-    color: mediumblue;
-    background-color: ghostwhite;
-    background-image: linear-gradient(aliceblue, lemonchiffon);
+header .container {
+    display: grid;
+    grid-template-rows: repeat(2, max-content);
+    grid-row-gap: 10px;
 }
-h1 {
+header h1 {
+    color: white;
     margin: 0;
 }
-
-/* Main 
-==================== */
-main {
+header nav a {
+    display: inline-block;
+    padding: .5em 1em;
+    text-decoration: none;
+    border: 2px outset aliceblue;
+    color: #333;
+    font-weight: bold;
     background-color: aliceblue;
-    background-image: linear-gradient(aliceblue, lemonchiffon);
-    height: calc(100vh - 200px);
-    padding: 100px 0;
+    background-image: linear-gradient(aliceblue, lightblue);
+    transition: all 200ms;
 }
+header nav a:last-child {
+    margin-left: 1.5em;
+}
+header nav a:hover {
+    color: dodgerblue;
+}
+/* MQ */
+@media screen and (min-width: 768px) {
+    header .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-top: 0;
+    }
+}
+
+
 
 /* Notes 
 ==================== */
 .notes {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(1, 1fr);
     grid-column-gap: 20px;
     grid-row-gap: 20px;
 }
 .notes article {
-    box-shadow: 0 0 12px -1px #eee;
-    border: 1px dotted black;
-    padding: 20px;
+    background: rgba(250, 249, 170, 0.25);
+    box-shadow: 0 1px 4px -1px #ccc;
+    border-top: 20px solid rgba(250, 249, 170, 0.75);
+    padding: 20px 20px 30px;
 }
 .notes article .controls {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 30px;
+    margin-bottom: 25px;
+}
+.notes article h3 {
+    font-size: 22px;
 }
 .notes article p {
-    margin: 0;
-    word-break: break-word;
+    line-height: 1.25;
+    white-space: pre-wrap;
 }
-
-/* Sidebar 
-==================== */
-.sidebar {
-    background: slategrey;
-    box-shadow: 0 1px 6px 0 black;
-    width: 80%;
-    height: 400px;
-    position: absolute;
-    top: 50%; left: 50%;
-    transform: translate(-50%, -50%);
-    opacity: 0;
-    pointer-events: none;
-    transition: all 200ms ease-out;
+.notes article form h3 {
+    font-size: 24px;
+    margin-top: 0;
 }
-.sidebar.show {
-    opacity: 1;
-    pointer-events: initial;
-}
-.sidebar form {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    color: white;
-}
-.sidebar .close-btn {
-    position: absolute;
-    top: 20px; right: 40px;
-    cursor: pointer;
-}
-.sidebar label {
-    margin-bottom: 10px;
-}
-.sidebar input,
-.sidebar textarea {
+.notes article form div {
     margin-bottom: 20px;
-    padding: 5px;
-    background: aliceblue;
 }
-.sidebar textarea {
-    height: 100px
-}
-.sidebar input[type=submit] {
-    width: 250px;
-    margin: 0 auto;
-    padding: 15px 0;
-    border-radius: 20px;
+.notes article label {
+    display: block;
+    font-size: 16px;
     font-weight: bold;
+    margin: 0 0 10px;
+}
+.notes article input,
+.notes article textarea {
+    font-size: 16px;
+    line-height: 1.5;
+    font-weight: bold;
+    height: 45px;
+    background-color: white;
+    border: 2px solid #ccc;
+    padding: 5px 10px;
+    width: 100%;
+}
+.notes article textarea {
+    min-height: 150px;
+    padding-top: 10px;
+}
+.notes article input:active,
+.notes article input:focus,
+.notes article textarea:active,
+.notes article textarea:focus {
+    box-shadow: none;
+    outline: none;
+}
+.notes article input[type=submit] {
+    color: #222;
+    font-size: 20px;
+    height: 60px;
+    color: #333;
     background-color: aliceblue;
-    cursor: pointer;
+    background-image: linear-gradient(aliceblue, lightblue);
+    border: none;
+    box-shadow: 0 0 4px -1px #ccc;
+    transition: all 200ms ease-in;
+}
+.notes article input[type=submit]:hover {
+    color: dodgerblue;
+    letter-spacing: 2px;
+}
+/* MQ */
+@media screen and (min-width: 768px){
+    .notes {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+@media screen and (min-width: 1024px){
+    .notes {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+@media screen and (min-width: 1440px){
+    .notes {
+        grid-template-columns: repeat(4, 1fr);
+    }
 }
 
-/* Portal
+
+
+/* Modal
 ==================== */
 .modal, .overlay {
     visibility: hidden;
@@ -126,40 +190,125 @@ main {
     opacity: 0;
     transition: all 200ms ease-out;
     position: absolute;
-}
-.modal.show,
-.overlay.show {
-    visibility: visible;
-    pointer-events: initial;
-    opacity: 1;
+    z-index: 20;
 }
 .modal {
-    width: 50vw;
-    background-color: white;
-    border: 10px solid rgba(255,255,255,0.5);
-    top: 50%; left: 50%;
-    transform: translate(-50%,-50%);
+    width: 100%;
+    background-color: rgb(22, 170, 255);
+    box-shadow: 0 0 12px -1px black;
+    top: 50%; left: 0;
+    transform: translate(0, -50%);
     border-radius: 5px;
+    padding: 20px 20px 0;
+}
+.modal h3 {
+    color: white;
+    font-size: 24px;
+    margin-top: 0;
+    text-align: center;
 }
 .modal div:not(.close) {
-    padding: 20px;
+    margin-bottom: 20px;
 }
 .modal .close {
+    color: white;
+    font-size: 20px;
     position: absolute;
-    top: 0;
-    left: -25px;
-    background-color: white;
-    padding: 10px;
+    top: -20px;
+    left: 20px;
+    background-color: rgb(22, 170, 255);
+    padding: 10px 15px;
     border-radius: 5px;
 }
 .modal label {
     display: block;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    margin: 0 0 10px;
 }
-.modal input {
-    height: 40px;
+.modal input,
+.modal textarea {
+    font-size: 16px;
+    line-height: 1.5;
+    font-weight: bold;
+    height: 45px;
+    color: white;
+    background-color: transparent;
+    border: none;
+    border: 2px solid white;
     padding: 5px 10px;
-    width: calc(100% - 20px);
+    width: 100%;
 }
-.modal div:last-child {
-    text-align: center;
+.modal textarea {
+    min-height: 150px;
+    padding-top: 10px;
 }
+.modal input:active,
+.modal input:focus,
+.modal textarea:active,
+.modal textarea:focus {
+    box-shadow: none;
+    outline: none;
+    border-bottom-style: dotted;
+}
+.modal input[type=submit] {
+    color: #222;
+    font-size: 20px;
+    height: 60px;
+    color: #333;
+    background-color: aliceblue;
+    background-image: linear-gradient(aliceblue, lightblue);
+    border: none;
+    box-shadow: 0 0 4px -1px black;
+    transition: all 200ms ease-in;
+}
+.modal input[type=submit]:hover {
+    color: dodgerblue;
+    letter-spacing: 2px;
+}
+/* MQ */
+@media screen and (min-width: 768px){
+    .modal {
+        width: 50vw;
+        max-width: 600px;
+        border: 10px outset rgba(255,255,255,0.5);
+        box-shadow: none;
+        top: 50%; left: 50%;
+        transform: translate(-50%, -50%);
+        border-radius: 5px;
+    }
+    .modal .close {
+        color: white;
+        font-size: 20px;
+        position: absolute;
+        top: 0px;
+        left: -30px;
+        background-color: rgb(22, 170, 255);
+        padding: 10px;
+        border-radius: 5px;
+    }
+}
+
+
+
+/* CTA Login
+==================== */
+.ctaLogin {
+    height: 100vh;
+    width: 100%;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.ctaLogin h2 {
+    display: inline-block;
+}
+/* MQ */
+/* @media screen and (min-width: 768px){
+    
+} */
