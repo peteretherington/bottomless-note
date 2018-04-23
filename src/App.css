@@ -36,7 +36,6 @@ main {
 }
 
 
-
 /* Header 
 ==================== */
 header {
@@ -84,7 +83,6 @@ header nav a:hover {
         padding-top: 0;
     }
 }
-
 
 
 /* Notes 
@@ -183,7 +181,6 @@ header nav a:hover {
         grid-template-columns: repeat(4, 1fr);
     }
 }
-
 
 
 /* Modal
@@ -293,7 +290,6 @@ header nav a:hover {
         border-radius: 5px;
     }
 }
-
 
 
 /* CTA Login

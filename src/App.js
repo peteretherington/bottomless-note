@@ -19,7 +19,7 @@ class App extends React.Component {
       notes: [],
       loggedin: false
     }
-    this.showSidebar = this.showSidebar.bind(this);
+    this.showModal = this.showModal.bind(this);
     this.addNote = this.addNote.bind(this);
     this.showSignUp = this.showSignUp.bind(this);
     this.showLogin = this.showLogin.bind(this);
@@ -32,28 +32,29 @@ class App extends React.Component {
       if(user){
         const dbRef = firebase.database().ref(`users/${user.uid}/notes`);
         dbRef.on('value', (res) => {
-          const userData = res.val();
+          const userData = res.val(); // Store the note data
           const dataArray = [];
           for(let key in res.val()){
-            userData[key].key = key;
-            dataArray.push(userData[key]);
+            userData[key].key = key; // Store the object ID inside of itself
+            dataArray.push(userData[key]); // Push the object into an array
           }
           this.setState({
-            notes: dataArray
+            notes: dataArray,
+            loggedin: true,
           })
         })
       }else{
         this.setState({
           notes: [],
-          loggedin: false
+          loggedin: false,
         })
       }
     })
   }
 
-  showSidebar(e) {
+  showModal(e) {
     e.preventDefault();
-    this.sidebar.classList.toggle('show');
+    this.modal.classList.toggle('show');
   }
 
   addNote(e) {
@@ -68,7 +69,7 @@ class App extends React.Component {
 
     this.noteTitle.value = "";
     this.noteText.value = "";
-    this.showSidebar(e);
+    this.showModal(e);
   }
 
   removeNote(noteID) {
@@ -106,7 +107,7 @@ class App extends React.Component {
           alert(err.message);
         })
     }else{
-      alert("Invalid: Passwords must match");
+      alert("Invalid: Both passwords must be the same.");
     }
   }
 
@@ -123,7 +124,7 @@ class App extends React.Component {
         })
       })
       .catch((err)=>{
-        alert('Invalid: Incorrect credentials');
+        alert("Invalid: Credentials don't match.");
       })
   }
 
@@ -160,7 +161,7 @@ class App extends React.Component {
                   if( this.state.loggedin ){
                     return(
                       <div>
-                        <a href="" onClick={this.showSidebar}>Add Note</a>
+                        <a href="" onClick={this.showModal}>Add Note</a>
                         <a href="" onClick={this.logoutAccount}>Logout</a>
                       </div>
                     )
@@ -227,10 +228,10 @@ class App extends React.Component {
           {this.renderCards()}
         </section>
 
-        <aside className="addNote modal" ref={ref => this.sidebar = ref}>
+        <aside className="addNote modal" ref={ref => this.modal = ref}>
           <form onSubmit={this.addNote} >
             <h3>Add New Note</h3>
-            <div className="close" onClick={this.showSidebar}>
+            <div className="close" onClick={this.showModal}>
               <i className="fa fa-times"></i>
             </div>
             <div>
