@@ -101,6 +101,9 @@ class App extends React.Component {
         .createUserWithEmailAndPassword(email, password)
         .then((res)=>{
           this.showSignUp(e);
+          this.setState({
+            loggedin: true
+          })
         })
         .catch((err)=>{
           alert(err.message);

@@ -100,6 +100,10 @@ header nav a:hover {
     box-shadow: 0 1px 4px -1px #ccc;
     border-top: 20px solid rgba(250, 249, 170, 0.75);
     padding: 20px 20px 30px;
+    transition: all 200ms ease-out;
+}
+.notes article:hover {
+    transform: scale(1.05);
 }
 .notes article .controls {
     display: flex;
