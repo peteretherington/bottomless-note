@@ -107,7 +107,7 @@ class App extends React.Component {
           alert(err.message);
         })
     }else{
-      alert("Invalid: Both passwords must be the same.");
+      alert("Passwords do not match.");
     }
   }
 
@@ -124,7 +124,7 @@ class App extends React.Component {
         })
       })
       .catch((err)=>{
-        alert("Invalid: Credentials don't match.");
+        alert("Credentials do not match.");
       })
   }
 
