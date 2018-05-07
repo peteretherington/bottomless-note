@@ -50,6 +50,7 @@ export default class NoteCard extends React.Component {
 
         return(
             <article>
+                <div className="date">{this.props.note.date}</div>
                 <div className="controls">
                     <div onClick={() => this.setState({editing: true})}><i className="fa fa-edit"></i></div>
                     <div onClick={() => this.props.removeNote(this.props.note.key)}><i className="fa fa-times"></i></div>

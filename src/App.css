@@ -10,7 +10,7 @@ body {
 main {
     background-color: aliceblue;
     min-height: 100vh;
-    padding: 150px 0 50px;
+    padding: 25px 0 150px;
 }
 .container {
     padding: 0 20px;
@@ -20,71 +20,126 @@ main {
     visibility: visible !important;
     pointer-events: initial !important;
 }
+.btn-yellow:hover {
+    background-image: linear-gradient(white, rgba(250, 249, 170, 0.75)) !important;
+}
+
+.btn-green:hover {
+    background-image: linear-gradient(white, rgba(111, 252, 98, 0.712)) !important;
+}
+
+.btn-red:hover {
+    background-image: linear-gradient(white, rgba(250, 170, 170, 0.75)) !important;
+}
 /* MQ */
-@media screen and (min-width: 360px) {
+@media screen and (min-width: 380px) {
     .container {
         padding: 0 40px;
     }
 }
 @media screen and (min-width: 768px) {
     main {
-        padding: 100px 0 50px;
+        padding: 155px 0 50px;
     }
     .container {
         padding: 0 80px;
     }
 }
-
+@media screen and (min-width: 1024px) {
+    main {
+        padding: 105px 0 50px;
+    }
+}
 
 
 /* Header 
 ==================== */
 header {
-    
     position: fixed;
     z-index: 10;
-    top: 0; left: 0;
+    bottom: 0; left: 0;
     width: 100%;
-    padding: 20px 0 15px;
+    padding: 20px 0;
     background-color: rgb(22, 170, 255);
-    box-shadow: 0px -2px 8px -1px black;
+    box-shadow: 0px 2px 8px -1px black;
 }
 header .container {
     display: grid;
-    grid-template-rows: repeat(2, max-content);
+    grid-template-rows: repeat(2, min-content);
     grid-row-gap: 10px;
+    text-align: center;
 }
 header h1 {
     color: white;
     margin: 0;
 }
+header nav p {
+    color: white;
+    text-align: center;
+    margin: 0 auto 1rem;
+    padding: .5rem;
+}
+header nav p span {
+    font-weight: bold;
+}
 header nav a {
     display: inline-block;
-    padding: .5em 1em;
-    text-decoration: none;
-    border: 2px outset aliceblue;
-    color: #333;
+    font-size: .9rem;
     font-weight: bold;
+    text-align: center;
+    color: #333;
+    text-decoration: none;
+    padding: .5em 1em;
+    border-radius: 2px;
     background-color: aliceblue;
     background-image: linear-gradient(aliceblue, lightblue);
-    transition: all 200ms;
+    text-transform: uppercase;
 }
 header nav a:last-child {
     margin-left: 1.5em;
 }
-header nav a:hover {
-    color: dodgerblue;
-}
 /* MQ */
+@media screen and (min-width: 400px) {
+    header nav a {
+        font-size: 1rem;
+    }
+}
 @media screen and (min-width: 768px) {
+    header {
+        top: 0; bottom: auto;
+        box-shadow: 0px -2px 8px -1px black;
+    }
+    header nav p {
+        display: inline-block;
+        margin: 0;
+        border: 1px solid white;
+        border-radius: 4px;
+    }
+    header nav a:first-of-type {
+        float: left;
+    }
+    header nav a:last-of-type {
+        float: right;
+        margin: 0;
+    }
+}
+@media screen and (min-width: 1024px) {
     header .container {
         display: flex;
         justify-content: space-between;
         align-items: center;
         padding-top: 0;
     }
+    header nav p {
+        margin-right: 2rem;     
+    }
+    header nav a {
+        float: none !important;
+    }
+    header nav a:last-child {
+        margin-left: 1.5em;
+    }
 }
-
 
 
 /* Notes 
@@ -96,14 +151,24 @@ header nav a:hover {
     grid-row-gap: 20px;
 }
 .notes article {
+    position: relative;
     background: rgba(250, 249, 170, 0.25);
     box-shadow: 0 1px 4px -1px #ccc;
-    border-top: 20px solid rgba(250, 249, 170, 0.75);
-    padding: 20px 20px 30px;
+    padding: 50px 20px 30px;
     transition: all 200ms ease-out;
 }
 .notes article:hover {
     transform: scale(1.05);
+}
+.notes article .date {
+    font-size: .8rem;
+    color: rgba(100, 100, 0, 0.25);
+    text-align: right;
+    background-color: rgba(250, 249, 170, 0.75);
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    padding: 7.5px 20px;
 }
 .notes article .controls {
     display: flex;
@@ -138,12 +203,14 @@ header nav a:hover {
     height: 45px;
     background-color: white;
     border: 2px solid #ccc;
+    border-radius: 4px;
     padding: 5px 10px;
     width: 100%;
 }
 .notes article textarea {
     min-height: 150px;
     padding-top: 10px;
+    resize: vertical;
 }
 .notes article input:active,
 .notes article input:focus,
@@ -157,15 +224,11 @@ header nav a:hover {
     font-size: 20px;
     height: 60px;
     color: #333;
-    background-color: aliceblue;
-    background-image: linear-gradient(aliceblue, lightblue);
+    background-image: linear-gradient(white,  rgba(253, 251, 131, 0.75));
     border: none;
     box-shadow: 0 0 4px -1px #ccc;
-    transition: all 200ms ease-in;
-}
-.notes article input[type=submit]:hover {
-    color: dodgerblue;
-    letter-spacing: 2px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 /* MQ */
 @media screen and (min-width: 768px){
@@ -173,17 +236,16 @@ header nav a:hover {
         grid-template-columns: repeat(2, 1fr);
     }
 }
-@media screen and (min-width: 1024px){
+@media screen and (min-width: 1025px){
     .notes {
         grid-template-columns: repeat(3, 1fr);
     }
 }
-@media screen and (min-width: 1440px){
+@media screen and (min-width: 1441px){
     .notes {
         grid-template-columns: repeat(4, 1fr);
     }
 }
-
 
 
 /* Modal
@@ -199,10 +261,10 @@ header nav a:hover {
 .modal {
     width: 100%;
     background-color: rgb(22, 170, 255);
+    border-radius: 5px;
     box-shadow: 0 0 12px -1px black;
     top: 50%; left: 0;
     transform: translate(0, -50%);
-    border-radius: 5px;
     padding: 20px 20px 0;
 }
 .modal h3 {
@@ -239,14 +301,15 @@ header nav a:hover {
     height: 45px;
     color: white;
     background-color: transparent;
-    border: none;
     border: 2px solid white;
+    border-radius: 4px;
     padding: 5px 10px;
     width: 100%;
 }
 .modal textarea {
     min-height: 150px;
     padding-top: 10px;
+    resize: vertical;
 }
 .modal input:active,
 .modal input:focus,
@@ -261,22 +324,18 @@ header nav a:hover {
     font-size: 20px;
     height: 60px;
     color: #333;
-    background-color: aliceblue;
     background-image: linear-gradient(aliceblue, lightblue);
     border: none;
     box-shadow: 0 0 4px -1px black;
-    transition: all 200ms ease-in;
-}
-.modal input[type=submit]:hover {
-    color: dodgerblue;
-    letter-spacing: 2px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 /* MQ */
 @media screen and (min-width: 768px){
     .modal {
         width: 50vw;
         max-width: 600px;
-        border: 10px outset rgba(255,255,255,0.5);
+        border: 8px solid rgba(255,255,255,0.5);
         box-shadow: none;
         top: 50%; left: 50%;
         transform: translate(-50%, -50%);
@@ -295,7 +354,6 @@ header nav a:hover {
 }
 
 
-
 /* CTA Login
 ==================== */
 .ctaLogin {
@@ -305,14 +363,22 @@ header nav a:hover {
     z-index: 1;
     top: 0;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-
 }
 .ctaLogin h2 {
+    text-align: center;
     display: inline-block;
+    padding: 0 2rem;
 }
-/* MQ */
-/* @media screen and (min-width: 768px){
-    
-} */
+.ctaLogin h2 span {
+    display:block;
+    font-family: monospace;
+}
+@media screen and (max-width: 400px) {
+    .ctaLogin h2 {
+        font-size: 1.25rem;
+        margin-top: -115px;
+    }
+}
